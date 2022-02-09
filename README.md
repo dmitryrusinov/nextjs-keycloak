@@ -6,15 +6,16 @@
 ```
 cp .env.local.example .env.local
 ```
-edit your .env.local file
+Edit your `.env.local` file
 
-then ->
+Get dependencies and start app dev mode
 ```
 yarn
 #
 yarn dev
 ```
 
+See `@react-keycloak/ssr` package [README](https://github.com/react-keycloak/react-keycloak/blob/master/packages/ssr/README.md) for complete documentation.
 ## Deploy
 
 don't forget assign values this variables
