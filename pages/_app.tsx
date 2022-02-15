@@ -4,6 +4,7 @@ import type { IncomingMessage } from 'http'
 import type { AppProps, AppContext } from 'next/app'
 
 import { SSRKeycloakProvider, SSRCookies } from '@react-keycloak/ssr'
+import { appWithTranslation } from 'next-i18next'
 
 const keycloakCfg = {
   url: process.env.NEXT_PUBLIC_KEYCLOAK_URL || "",
@@ -14,6 +15,7 @@ const keycloakCfg = {
 interface InitialProps {
   cookies: unknown
 }
+
 
 function MyApp({ Component, pageProps, cookies }: AppProps & InitialProps) {
 
@@ -34,11 +36,16 @@ function parseCookies(req?: IncomingMessage) {
   return cookie.parse(req.headers.cookie || '')
 }
 
-MyApp.getInitialProps = async (context: AppContext) => {
-  // Extract cookies from AppContext
+MyApp.getInitialProps = async ({Component, ctx}: AppContext) => {
+  let pageProps = {}
+  if (Component?.getInitialProps) {
+    pageProps = await Component.getInitialProps(ctx)
+  }
   return {
-    cookies: parseCookies(context?.ctx?.req),
+    // Extract cookies from AppContext
+    cookies: parseCookies(ctx?.req),
+    pageProps
   }
 }
 
-export default MyApp
+export default appWithTranslation(MyApp)

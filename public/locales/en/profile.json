@@ -1,0 +1,9 @@
+{
+  "mail": "Email",
+  "username": "Username",
+  "first_name": "First Name",
+  "last_name": "Last Name",
+  "CTA": "Please login to view profile.",
+  "title": "Profile | Next.js + Keycloak Example",
+  "header": "User Profile"
+}
