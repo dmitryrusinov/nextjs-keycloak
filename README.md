@@ -1,4 +1,4 @@
-# TypeScript Next.js Keycloak example
+# TypeScript Next.js Keycloak i18next example
 
 
 ## How to use it?
@@ -16,6 +16,9 @@ yarn dev
 ```
 
 See `@react-keycloak/ssr` package [README](https://github.com/react-keycloak/react-keycloak/blob/master/packages/ssr/README.md) for complete documentation.
+
+
+Also `@isaachinman/next-i18next` package [README](https://github.com/isaachinman/next-i18next/blob/master/README.md).
 ## Deploy
 
 don't forget assign values this variables
