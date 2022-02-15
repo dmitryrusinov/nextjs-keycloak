@@ -1,8 +1,8 @@
 {
   "h1": "Hello Next.js + Keycloak + i18next \uD83D\uDC4B",
   "h2": "This is an example of a Next.js site using Keycloak.",
-  "locale-button" : "RU",
-  "you-are" : "You are",
+  "locale-button": "RU",
+  "you-are": "You are",
   "welcome-logged": "Welcome back {{userName}}",
   "welcome-anon": "Welcome visitor. Please login to continue."
 }
