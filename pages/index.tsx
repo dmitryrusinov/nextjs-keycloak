@@ -3,7 +3,7 @@ import type {KeycloakInstance, KeycloakTokenParsed} from 'keycloak-js'
 import {Layout} from '../components/Layout'
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
 import {useTranslation} from "next-i18next";
-import {NextPage} from "next";
+import {GetStaticProps, NextPage} from "next";
 
 type ParsedToken = KeycloakTokenParsed & {
     email?: string
@@ -43,9 +43,9 @@ const IndexPage: NextPage = () => {
     )
 }
 
-export const getStaticProps = async ({locale}: { locale: string; }) => ({
+export const getStaticProps: GetStaticProps = async (context) => ({
     props: {
-        ...(await serverSideTranslations(locale, ['common']))
+        ...(await serverSideTranslations(context?.locale || '', ['common']))
     }
 })
 

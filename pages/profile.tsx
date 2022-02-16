@@ -1,6 +1,6 @@
 import {useKeycloak} from '@react-keycloak/ssr'
 import type {KeycloakInstance, KeycloakTokenParsed} from 'keycloak-js'
-import type {NextPage} from 'next'
+import type {GetStaticProps, NextPage} from 'next'
 import * as React from 'react'
 
 import {Layout} from '../components/Layout'
@@ -47,9 +47,9 @@ const ProfilePage: NextPage = () => {
     )
 }
 
-export const getStaticProps = async ({locale}: { locale: string; }) => ({
+export const getStaticProps: GetStaticProps = async (context) => ({
     props: {
-        ...(await serverSideTranslations(locale, ['profile', 'common']))
+        ...(await serverSideTranslations(context?.locale || '', ['profile', 'common']))
     }
 })
 
