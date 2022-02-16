@@ -78,12 +78,12 @@ export const Header: React.FC = () => {
                 </>
             )}
             <Link
-                href='/'
+                href={router.asPath}
                 locale={router.locale === 'en' ? 'ru' : 'en'}
             >
                 <button
                     type="button"
-                    className="mx-2 btn btn-outline-warning"
+                    className="mx-2 btn btn-info"
                 >
                     {t('locale-button')}
                 </button>
