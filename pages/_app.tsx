@@ -17,11 +17,11 @@ interface InitialProps {
 }
 
 
-function MyApp({
+const MyApp = ({
                    Component,
                    pageProps,
                    cookies
-               }: AppProps & InitialProps) {
+               }: AppProps & InitialProps) => {
 
     return (
         <SSRKeycloakProvider

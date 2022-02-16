@@ -17,6 +17,12 @@ type ParsedToken = KeycloakTokenParsed & {
     family_name?: string
 }
 
+const Field = ({label, value}: {label: string; value: string}) => (<li>
+        <span className="font-weight-bold mr-1">{label}:</span>
+        <span className="text-muted">{value}</span>
+    </li>)
+
+
 const ProfilePage: NextPage = () => {
     const {keycloak} = useKeycloak<KeycloakInstance>()
     const {t} = useTranslation('profile')
@@ -24,24 +30,10 @@ const ProfilePage: NextPage = () => {
 
     const profile = keycloak?.authenticated ? (
         <ul>
-            <li>
-                <span className="font-weight-bold mr-1">{t('mail')}:</span>
-                <span className="text-muted">{parsedToken?.email ?? ''}</span>
-            </li>
-            <li>
-                <span className="font-weight-bold mr-1">{t('username')}:</span>
-                <span className="text-muted">
-          {parsedToken?.preferred_username ?? ''}
-        </span>
-            </li>
-            <li>
-                <span className="font-weight-bold mr-1">{t('first_name')}:</span>
-                <span className="text-muted">{parsedToken?.given_name ?? ''}</span>
-            </li>
-            <li>
-                <span className="font-weight-bold mr-1">{t('last_name')}:</span>
-                <span className="text-muted">{parsedToken?.family_name ?? ''}</span>
-            </li>
+            <Field label={t('mail')} value={parsedToken?.email ?? ''}/>
+            <Field label={t('username')} value={parsedToken?.preferred_username ?? ''}/>
+            <Field label={t('first_name')} value={parsedToken?.given_name ?? ''}/>
+            <Field label={t('last_name')} value={parsedToken?.family_name ?? ''}/>
         </ul>
     ) : (
         <span>{t('CTA')}</span>
@@ -57,7 +49,7 @@ const ProfilePage: NextPage = () => {
 
 export const getStaticProps = async ({locale}: { locale: string; }) => ({
     props: {
-        ...(await serverSideTranslations(locale, ['profile']))
+        ...(await serverSideTranslations(locale, ['profile', 'common']))
     }
 })
 

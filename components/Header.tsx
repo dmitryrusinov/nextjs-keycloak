@@ -2,10 +2,13 @@ import {useKeycloak} from '@react-keycloak/ssr'
 import type {KeycloakInstance} from 'keycloak-js'
 import Link from 'next/link'
 import * as React from 'react'
+import {useRouter} from "next/router";
+import {useTranslation} from "next-i18next";
 
 export const Header: React.FC = () => {
     const {keycloak} = useKeycloak<KeycloakInstance>()
-
+    const router = useRouter()
+    const {t} = useTranslation('common')
     return (
         <header
             className="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
@@ -16,9 +19,11 @@ export const Header: React.FC = () => {
             </Link>
             <nav className="my-2 my-md-0 mr-md-3">
                 <Link href="/profile">
-                    <a className="p-2 text-dark">Profile</a>
+                    <a className="p-2 text-dark">{t('nav-profile')}</a>
                 </Link>
             </nav>
+
+
             {keycloak?.authenticated ? (
                 <>
                     <button
@@ -30,7 +35,7 @@ export const Header: React.FC = () => {
                             }
                         }}
                     >
-                        My Account
+                        {t('account-button')}
                     </button>
 
                     <button
@@ -42,7 +47,7 @@ export const Header: React.FC = () => {
                             }
                         }}
                     >
-                        Logout
+                        {t('logout-button')}
                     </button>
                 </>
             ) : (
@@ -56,7 +61,7 @@ export const Header: React.FC = () => {
                             }
                         }}
                     >
-                        Signup
+                        {t('signup-button')}
                     </button>
 
                     <button
@@ -68,10 +73,21 @@ export const Header: React.FC = () => {
                             }
                         }}
                     >
-                        Login
+                        {t('login-button')}
                     </button>
                 </>
             )}
+            <Link
+                href='/'
+                locale={router.locale === 'en' ? 'ru' : 'en'}
+            >
+                <button
+                    type="button"
+                    className="mx-2 btn btn-outline-warning"
+                >
+                    {t('locale-button')}
+                </button>
+            </Link>
         </header>
     )
 }

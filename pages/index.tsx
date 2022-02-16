@@ -1,10 +1,9 @@
 import {useKeycloak} from '@react-keycloak/ssr'
 import type {KeycloakInstance, KeycloakTokenParsed} from 'keycloak-js'
-import Link from 'next/link'
 import {Layout} from '../components/Layout'
 import {serverSideTranslations} from "next-i18next/serverSideTranslations";
 import {useTranslation} from "next-i18next";
-import {useRouter} from "next/router";
+import {NextPage} from "next";
 
 type ParsedToken = KeycloakTokenParsed & {
     email?: string
@@ -16,15 +15,14 @@ type ParsedToken = KeycloakTokenParsed & {
     family_name?: string
 }
 
-const IndexPage = () => {
+const IndexPage: NextPage = () => {
     const {keycloak} = useKeycloak<KeycloakInstance>()
     const parsedToken: ParsedToken | undefined = keycloak?.tokenParsed
-    const router = useRouter()
     const {t} = useTranslation('common')
     const loggedinState = keycloak?.authenticated ? (
-        <span className="text-success">logged in</span>
+        <span className="text-success">{t('logged-in')}</span>
     ) : (
-        <span className="text-danger">NOT logged in</span>
+        <span className="text-danger">{t('logged-out')}</span>
     )
 
     const welcomeMessage =
@@ -38,14 +36,7 @@ const IndexPage = () => {
             <div className="mb-5 lead text-muted">
                 {t('h2')}
             </div>
-            <Link
-                href='/'
-                locale={router.locale === 'en' ? 'ru' : 'en'}
-            >
-                <button>
-                    {t('locale-button')}
-                </button>
-            </Link>
+
             <p> {t('you-are')}: {loggedinState}</p>
             <p>{welcomeMessage}</p>
         </Layout>

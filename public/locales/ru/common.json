@@ -2,7 +2,14 @@
   "h1": "Привет Next.js + Keycloak + i18next \uD83D\uDC4B",
   "h2": "Это пример локализованного с помощью i18next приложения Next.js в связке с Keycloak.",
   "locale-button": "EN",
+  "signup-button": "Регистрация",
+  "login-button": "Вход",
+  "account-button": "Мой аккаунт",
+  "logout-button": "Выйти",
+  "logged-in": "авторизован",
+  "logged-out": "Не авторизован",
   "you-are": "Вы",
   "welcome-logged": "Добро пожаловать {{userName}}!",
-  "welcome-anon": "Привет посетитель. Войди или зарегистрируся для продолжения."
+  "welcome-anon": "Привет посетитель. Войди или зарегистрируся для продолжения.",
+  "nav-profile": "Профиль"
 }
